@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import confetti from "canvas-confetti";
 import Flashcard from "./Flashcard";
 import { bunkerValentineFlashcards } from "../data/flashcards";
 
@@ -38,6 +39,7 @@ export default function FlashcardApp() {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [usedIndices, setUsedIndices] = useState<number[]>([]);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [hasTriggeredConfetti, setHasTriggeredConfetti] = useState(false);
 
   // Initialize with a random card
   useEffect(() => {
@@ -45,6 +47,50 @@ export default function FlashcardApp() {
     setCurrentCardIndex(randomIndex);
     setUsedIndices([randomIndex]);
   }, []);
+
+  // Trigger confetti when all cards are completed
+  useEffect(() => {
+    if (usedIndices.length === bunkerValentineFlashcards.length && !hasTriggeredConfetti) {
+      setHasTriggeredConfetti(true);
+      
+      // Multiple confetti bursts for celebration
+      const duration = 3000;
+      const end = Date.now() + duration;
+
+      const colors = ['#FFD700', '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7'];
+
+      (function frame() {
+        confetti({
+          particleCount: 3,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 },
+          colors: colors
+        });
+        confetti({
+          particleCount: 3,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 },
+          colors: colors
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      }());
+
+      // Big burst in the center
+      setTimeout(() => {
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: colors
+        });
+      }, 500);
+    }
+  }, [usedIndices.length, hasTriggeredConfetti]);
 
   const getNextRandomCard = () => {
     if (isAnimating) return;
@@ -54,6 +100,7 @@ export default function FlashcardApp() {
     // If we've used all cards, reset
     if (usedIndices.length === bunkerValentineFlashcards.length) {
       setUsedIndices([]);
+      setHasTriggeredConfetti(false);
     }
     
     let availableIndices = bunkerValentineFlashcards
@@ -83,6 +130,7 @@ export default function FlashcardApp() {
     setTimeout(() => {
       setCurrentCardIndex(randomIndex);
       setUsedIndices([randomIndex]);
+      setHasTriggeredConfetti(false);
       setIsAnimating(false);
     }, 150);
   };
@@ -171,8 +219,8 @@ export default function FlashcardApp() {
           {/* Stats */}
           <div className="text-center text-slate-300 pt-2 h-6 flex items-center justify-center">
             {usedIndices.length === bunkerValentineFlashcards.length && (
-              <p className="text-sm transition-opacity duration-300 animate-in fade-in">
-                🎉 Congratulations! You&apos;ve completed all flashcards!
+              <p className="text-xl mt-10 p-4 font-bold text-yellow-300 transition-opacity duration-300 animate-in fade-in">
+                🎉 Amazing! You&apos;ve mastered the Bunker Valentin history! 🎊
               </p>
             )}
           </div>
