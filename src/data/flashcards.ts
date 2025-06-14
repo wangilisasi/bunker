@@ -97,20 +97,11 @@ export const bunkerValentineFlashcards = [
         "What was the Nazi term for civilian forced laborers from the occupied territories of the Soviet Union?",
       answer: "'Ostarbeiter' (Eastern Workers).",
     },
-    {
-      question:
-        "Why were Italian soldiers designated as 'military internees' and used for forced labor?",
-      answer:
-        "After Italy withdrew from its alliance with Germany in 1943, its soldiers were captured. Germany re-classified them as 'military internees' to bypass international law and use them as forced laborers.",
-    },
+    
     {
       question: "What was an 'Arbeitserziehungslager'?",
       answer:
         "A so-called “corrective labour camp” operated by the Gestapo to discipline and oppress the workforce through violence and harsh conditions.",
     },
-    {
-      question:
-        "Who are the two historians credited with writing the German text this summary is based on?",
-      answer: "Dr. Christel Trouvé and Dr. Marcus Meyer.",
-    },
+    
   ];

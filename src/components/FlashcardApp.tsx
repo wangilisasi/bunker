@@ -101,10 +101,7 @@ export default function FlashcardApp() {
           {/* Header */}
           <div className="text-center mb-10">
             <h1 className="text-5xl md:text-6xl font-extrabold text-white shadow-lg">
-              Bunker Valentin{" "}
-              <span className="text-4xl md:text-5xl font-semibold text-white/70">
-                ({usedIndices.length}/{bunkerValentineFlashcards.length})
-              </span>
+              Bunker Valentin
             </h1>
           </div>
 
