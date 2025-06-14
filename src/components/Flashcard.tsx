@@ -7,30 +7,31 @@ type AnimationStyle = (typeof animations)[number];
 
 // These components now only define the *look* of the card, not its positioning.
 const FrontCard = ({ question }: { question: string }) => (
-  <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl shadow-xl shadow-blue-500/20 group-hover:shadow-2xl group-hover:shadow-purple-500/20 transition-all duration-500 flex items-center justify-center p-8 sm:p-10">
+  <div className="w-full h-full bg-black/20 backdrop-blur-lg border-2 border-white/30 group-hover:border-white/50 rounded-3xl transition-all duration-500 flex items-center justify-center p-8 sm:p-10">
     <div className="relative text-center w-full h-full flex items-center justify-center">
       <h2 className="text-white text-3xl md:text-4xl font-bold leading-tight">
         {question}
       </h2>
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 text-xs uppercase tracking-widest">
-        Click to reveal
+      <div className="absolute bottom-4 right-4">
+        <div className="px-4 py-2 bg-transparent border border-white/40 rounded-full text-white/70 text-xs uppercase tracking-widest group-hover:bg-white/10 transition-all">
+          Click to reveal
+        </div>
       </div>
     </div>
   </div>
 );
 
 const BackCard = ({ answer }: { answer: string }) => (
-  <div className="w-full h-full bg-gradient-to-br from-emerald-500 to-green-600 rounded-3xl shadow-xl shadow-emerald-500/20 group-hover:shadow-2xl group-hover:shadow-green-500/20 transition-all duration-500 flex items-center justify-center p-8 sm:p-10">
+  <div className="w-full h-full bg-black/20 backdrop-blur-lg border-2 border-white/30 group-hover:border-white/50 rounded-3xl transition-all duration-500 flex items-center justify-center p-8 sm:p-10">
     <div className="relative text-center w-full h-full flex flex-col items-center justify-center">
-      <div className="text-emerald-200 text-sm font-medium mb-4 uppercase tracking-wider">
-        Answer
+      <div className="absolute top-4 left-4">
+        <div className="px-3 py-1 bg-white/10 border border-white/20 rounded-full text-white/80 text-xs font-semibold uppercase tracking-widest">
+          Answer
+        </div>
       </div>
       <p className="text-white text-2xl md:text-3xl leading-relaxed font-[family-name:var(--font-geist-mono)]">
         {answer}
       </p>
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 text-xs uppercase tracking-widest">
-        Click to go back
-      </div>
     </div>
   </div>
 );

@@ -4,6 +4,36 @@ import { useState, useEffect } from "react";
 import Flashcard from "./Flashcard";
 import { bunkerValentineFlashcards } from "../data/flashcards";
 
+const NextIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="h-8 w-8"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={2.5}
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+  </svg>
+);
+
+const ResetIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="h-7 w-7"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={2.5}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3"
+    />
+  </svg>
+);
+
 export default function FlashcardApp() {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [usedIndices, setUsedIndices] = useState<number[]>([]);
@@ -68,51 +98,66 @@ export default function FlashcardApp() {
       />
       <div className="fixed inset-0 w-full h-full bg-black/50 -z-10" />
       <main className="flex flex-col items-center justify-center min-h-screen p-4 sm:p-6 md:p-8">
-        <div className="w-full max-w-3xl mx-auto space-y-10">
+        <div className="w-full max-w-6xl mx-auto flex flex-col items-center">
           {/* Header */}
-          <div className="text-center">
+          <div className="text-center mb-10">
             <h1 className="text-5xl md:text-6xl font-extrabold text-white shadow-lg">
-              Bunker Valentin
+              Bunker Valentin{" "}
+              <span className="text-4xl md:text-5xl font-semibold text-white/70">
+                ({usedIndices.length}/{bunkerValentineFlashcards.length})
+              </span>
             </h1>
           </div>
 
-          {/* Flashcard */}
-          <div
-            className={`transition-all duration-300 ${
-              isAnimating ? "opacity-0 scale-95" : "opacity-100 scale-100"
-            }`}
-          >
-            <Flashcard
-              key={currentCardIndex}
-              question={currentCard?.question || ""}
-              answer={currentCard?.answer || ""}
-            />
-          </div>
+          {/* Main Content Area */}
+          <div className="w-full flex items-center justify-center gap-4 lg:gap-8">
+            {/* Left Button (Desktop) */}
+            <div className="hidden lg:block">
+              <button
+                onClick={resetProgress}
+                disabled={isAnimating}
+                aria-label="Reset progress"
+                className="w-20 h-20 flex items-center justify-center bg-transparent border-2 border-slate-300/50 text-white/80 rounded-full hover:bg-white/10 hover:border-white/80 transition-all duration-300 ease-in-out disabled:opacity-50"
+              >
+                <ResetIcon />
+              </button>
+            </div>
 
-          {/* Controls and Progress */}
-          <div className="space-y-6">
-            {/* Progress Bar */}
-            <div className="w-full max-w-md mx-auto">
-              <div className="flex justify-between text-sm text-slate-200 mb-2">
-                <span>Progress</span>
-                <span>
-                  {usedIndices.length} / {bunkerValentineFlashcards.length}
-                </span>
-              </div>
-              <div className="w-full bg-white/20 rounded-full h-2.5">
-                <div
-                  className="bg-gradient-to-r from-blue-400 to-purple-500 h-2.5 rounded-full transition-all duration-500"
-                  style={{ width: `${progress}%` }}
+            {/* Flashcard */}
+            <div className="w-full max-w-3xl">
+              <div
+                className={`transition-all duration-300 ${
+                  isAnimating ? "opacity-0 scale-95" : "opacity-100 scale-100"
+                }`}
+              >
+                <Flashcard
+                  key={currentCardIndex}
+                  question={currentCard?.question || ""}
+                  answer={currentCard?.answer || ""}
                 />
               </div>
             </div>
 
-            {/* Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+            {/* Right Button (Desktop) */}
+            <div className="hidden lg:block">
               <button
                 onClick={getNextRandomCard}
                 disabled={isAnimating}
-                className="w-full sm:w-52 px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                aria-label="Next card"
+                className="w-20 h-20 flex items-center justify-center bg-transparent border-2 border-white/90 text-white/90 rounded-full hover:bg-white/10 hover:border-white transition-all duration-300 ease-in-out disabled:opacity-50"
+              >
+                <NextIcon />
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Buttons */}
+          <div className="lg:hidden w-full mt-10">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <button
+                onClick={getNextRandomCard}
+                disabled={isAnimating}
+                className="w-full sm:w-52 px-8 py-4 bg-transparent border-2 border-white/90 text-white/90 font-bold rounded-full hover:bg-white/10 hover:border-white transition-all duration-300 ease-in-out disabled:opacity-50"
               >
                 Next Card
               </button>
@@ -120,22 +165,20 @@ export default function FlashcardApp() {
               <button
                 onClick={resetProgress}
                 disabled={isAnimating}
-                className="w-full sm:w-52 px-8 py-4 bg-transparent border-2 border-slate-300/50 text-white/80 font-bold rounded-full hover:bg-white/10 hover:border-white/80 transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full sm:w-52 px-8 py-4 bg-transparent border-2 border-slate-300/50 text-white/80 font-bold rounded-full hover:bg-white/10 hover:border-white/80 transition-all duration-300 ease-in-out disabled:opacity-50"
               >
                 Reset Progress
               </button>
             </div>
+          </div>
 
-            {/* Stats */}
-            <div className="text-center text-slate-300 pt-2">
-              <p className="text-sm transition-opacity duration-300">
-                {usedIndices.length === bunkerValentineFlashcards.length
-                  ? "🎉 Congratulations! You've completed all flashcards!"
-                  : `${
-                      bunkerValentineFlashcards.length - usedIndices.length
-                    } cards remaining`}
+          {/* Stats */}
+          <div className="text-center text-slate-300 pt-2 h-6 flex items-center justify-center">
+            {usedIndices.length === bunkerValentineFlashcards.length && (
+              <p className="text-sm transition-opacity duration-300 animate-in fade-in">
+                🎉 Congratulations! You've completed all flashcards!
               </p>
-            </div>
+            )}
           </div>
         </div>
       </main>
