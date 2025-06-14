@@ -1,6 +1,6 @@
 export const bunkerValentineFlashcards = [
     {
-      question: "Where was Bunker Valentin located?",
+      question: "Where is Bunker Valentin located?",
       answer:
         "In Bremen-Farge, by the banks of the River Weser, about 35 kilometers from Bremen city center.",
     },

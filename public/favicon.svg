@@ -1,0 +1,17 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Memorial/Bunker structure -->
+  <rect x="4" y="12" width="24" height="16" rx="2" fill="#4A5568" stroke="#2D3748" stroke-width="1"/>
+  
+  <!-- Memorial flame/remembrance symbol -->
+  <path d="M16 4 C14 6, 14 8, 16 10 C18 8, 18 6, 16 4 Z" fill="#F6AD55"/>
+  <circle cx="16" cy="10" r="1.5" fill="#ED8936"/>
+  
+  <!-- Small memorial details -->
+  <rect x="8" y="16" width="2" height="8" fill="#2D3748"/>
+  <rect x="14" y="16" width="2" height="8" fill="#2D3748"/>
+  <rect x="20" y="16" width="2" height="8" fill="#2D3748"/>
+  <rect x="26" y="16" width="2" height="8" fill="#2D3748"/>
+  
+  <!-- Base/foundation -->
+  <rect x="2" y="26" width="28" height="4" rx="1" fill="#2D3748"/>
+</svg> 

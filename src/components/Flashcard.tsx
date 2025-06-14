@@ -37,11 +37,11 @@ export default function Flashcard({ question, answer }: FlashcardProps) {
         <div className="absolute inset-0 w-full h-full backface-hidden">
           <CardFace>
             <div className="relative text-center w-full h-full flex items-center justify-center">
-              <h2 className="text-white text-3xl md:text-4xl font-bold leading-tight">
+              <h2 className="text-white text-3xl md:text-4xl font-bold leading-relaxed font-[family-name:var(--font-inter)]">
                 {question}
               </h2>
               <div className="absolute bottom-4 right-4">
-                <div className="px-4 py-2 bg-transparent border border-white/40 rounded-full text-white/70 text-xs uppercase tracking-widest group-hover:bg-white/10 transition-all">
+                <div className="px-4 py-2 bg-transparent border border-white/40 rounded-full text-white/70 text-xs uppercase tracking-widest group-hover:bg-white/10 transition-all font-[family-name:var(--font-inter)]">
                   Click to reveal
                 </div>
               </div>

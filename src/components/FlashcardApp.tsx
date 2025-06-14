@@ -148,9 +148,18 @@ export default function FlashcardApp() {
         <div className="w-full max-w-6xl mx-auto flex flex-col items-center">
           {/* Header */}
           <div className="text-center mb-10">
-            <h1 className="text-5xl md:text-6xl font-extrabold text-white shadow-lg">
+            <h1 className="text-5xl md:text-6xl font-extrabold text-white shadow-lg mb-4 font-[family-name:var(--font-oswald)] tracking-wide">
               Bunker Valentin
             </h1>
+            {/* Progress Bar */}
+            <div className="w-64 mx-auto h-1 bg-white/20 rounded-full overflow-hidden backdrop-blur-sm">
+              <div 
+                className="h-full bg-gradient-to-r from-yellow-400 to-yellow-300 rounded-full transition-all duration-700 ease-out"
+                style={{ 
+                  width: `${(usedIndices.length / bunkerValentineFlashcards.length) * 100}%` 
+                }}
+              />
+            </div>
           </div>
 
           {/* Main Content Area */}
@@ -201,7 +210,7 @@ export default function FlashcardApp() {
               <button
                 onClick={getNextRandomCard}
                 disabled={isAnimating}
-                className="w-full sm:w-52 px-8 py-4 bg-transparent border-2 border-white/90 text-white/90 font-bold rounded-full hover:bg-white/10 hover:border-white transition-all duration-300 ease-in-out disabled:opacity-50"
+                className="w-full sm:w-52 px-8 py-4 bg-transparent border-2 border-white/90 text-white/90 font-bold rounded-full hover:bg-white/10 hover:border-white transition-all duration-300 ease-in-out disabled:opacity-50 font-[family-name:var(--font-inter)]"
               >
                 Next Card
               </button>
@@ -209,7 +218,7 @@ export default function FlashcardApp() {
               <button
                 onClick={resetProgress}
                 disabled={isAnimating}
-                className="w-full sm:w-52 px-8 py-4 bg-transparent border-2 border-slate-300/50 text-white/80 font-bold rounded-full hover:bg-white/10 hover:border-white/80 transition-all duration-300 ease-in-out disabled:opacity-50"
+                className="w-full sm:w-52 px-8 py-4 bg-transparent border-2 border-slate-300/50 text-white/80 font-bold rounded-full hover:bg-white/10 hover:border-white/80 transition-all duration-300 ease-in-out disabled:opacity-50 font-[family-name:var(--font-inter)]"
               >
                 Reset Progress
               </button>
@@ -219,7 +228,7 @@ export default function FlashcardApp() {
           {/* Stats */}
           <div className="text-center text-slate-300 pt-2 h-6 flex items-center justify-center">
             {usedIndices.length === bunkerValentineFlashcards.length && (
-              <p className="text-xl mt-10 p-4 font-bold text-yellow-300 transition-opacity duration-300 animate-in fade-in">
+              <p className="text-xl mt-10 p-4 font-bold text-yellow-300 transition-opacity duration-300 animate-in fade-in font-[family-name:var(--font-inter)]">
                 🎉 Amazing! You&apos;ve mastered the Bunker Valentin history! 🎊
               </p>
             )}
