@@ -88,7 +88,6 @@ export default function FlashcardApp() {
   };
 
   const currentCard = bunkerValentineFlashcards[currentCardIndex];
-  const progress = (usedIndices.length / bunkerValentineFlashcards.length) * 100;
 
   return (
     <>
@@ -176,7 +175,7 @@ export default function FlashcardApp() {
           <div className="text-center text-slate-300 pt-2 h-6 flex items-center justify-center">
             {usedIndices.length === bunkerValentineFlashcards.length && (
               <p className="text-sm transition-opacity duration-300 animate-in fade-in">
-                🎉 Congratulations! You've completed all flashcards!
+                🎉 Congratulations! You&apos;ve completed all flashcards!
               </p>
             )}
           </div>
