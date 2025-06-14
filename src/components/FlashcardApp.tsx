@@ -148,7 +148,7 @@ export default function FlashcardApp() {
         <div className="w-full max-w-6xl mx-auto flex flex-col items-center">
           {/* Header */}
           <div className="text-center mb-10">
-            <h1 className="text-5xl md:text-6xl font-extrabold text-white shadow-lg mb-4 font-[family-name:var(--font-oswald)] tracking-wide">
+            <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-white shadow-lg mb-4 font-[family-name:var(--font-dancing-script)] tracking-wide">
               Bunker Valentin
             </h1>
             {/* Progress Bar */}

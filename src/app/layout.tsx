@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Oswald, Inter } from "next/font/google";
+import { Geist, Geist_Mono, Oswald, Inter, Dancing_Script } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -24,6 +24,12 @@ const inter = Inter({
   weight: ["300", "400", "500", "600", "700"],
 });
 
+const dancingScript = Dancing_Script({
+  variable: "--font-dancing-script",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
   title: "Bunker Valentin Memorial - Interactive History Flashcards",
   description: "Learn about Bunker Valentin, a WWII Nazi submarine construction site and memorial to forced labor victims. Interactive flashcards covering the history of this important Bremen-Farge memorial site.",
@@ -44,7 +50,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${oswald.variable} ${inter.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${oswald.variable} ${inter.variable} ${dancingScript.variable} antialiased`}
       >
         {children}
       </body>
