@@ -40,6 +40,7 @@ export default function FlashcardApp() {
   const [usedIndices, setUsedIndices] = useState<number[]>([]);
   const [isAnimating, setIsAnimating] = useState(false);
   const [hasTriggeredConfetti, setHasTriggeredConfetti] = useState(false);
+  const [showTimelineButton, setShowTimelineButton] = useState(false);
 
   // Initialize with a random card
   useEffect(() => {
@@ -88,6 +89,8 @@ export default function FlashcardApp() {
           origin: { y: 0.6 },
           colors: colors
         });
+        // Show the timeline button after the final burst
+        setShowTimelineButton(true);
       }, 500);
     }
   }, [usedIndices.length, hasTriggeredConfetti]);
@@ -101,6 +104,7 @@ export default function FlashcardApp() {
     if (usedIndices.length === bunkerValentineFlashcards.length) {
       setUsedIndices([]);
       setHasTriggeredConfetti(false);
+      setShowTimelineButton(false);
     }
     
     let availableIndices = bunkerValentineFlashcards
@@ -117,6 +121,7 @@ export default function FlashcardApp() {
     setTimeout(() => {
       setCurrentCardIndex(randomIndex);
       setUsedIndices(prev => [...prev, randomIndex]);
+      setShowTimelineButton(false);
       setIsAnimating(false);
     }, 150);
   };
@@ -131,6 +136,7 @@ export default function FlashcardApp() {
       setCurrentCardIndex(randomIndex);
       setUsedIndices([randomIndex]);
       setHasTriggeredConfetti(false);
+      setShowTimelineButton(false);
       setIsAnimating(false);
     }, 150);
   };
@@ -144,12 +150,12 @@ export default function FlashcardApp() {
         style={{ backgroundImage: "url(/valentine.jpg)" }}
       />
       <div className="fixed inset-0 w-full h-full bg-black/50 -z-10" />
-      <main className="flex flex-col items-center justify-center min-h-screen p-4 sm:p-6 md:p-8">
+      <main className="min-h-screen ">
         <div className="w-full max-w-6xl mx-auto flex flex-col items-center">
           {/* Header */}
-          <div className="text-center mb-10">
+          <div className="text-center pt-16 mb-8">
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-white shadow-lg mb-4 font-[family-name:var(--font-dancing-script)] tracking-wide">
-              Bunker Valentin
+              Bunker Valentin Flashcards
             </h1>
             {/* Progress Bar */}
             <div className="w-64 mx-auto h-1 bg-white/20 rounded-full overflow-hidden backdrop-blur-sm">
@@ -226,11 +232,14 @@ export default function FlashcardApp() {
           </div>
 
           {/* Stats */}
-          <div className="text-center text-slate-300 pt-2 h-6 flex items-center justify-center">
-            {usedIndices.length === bunkerValentineFlashcards.length && (
-              <p className="text-xl mt-10 p-4 font-bold text-yellow-300 transition-opacity duration-300 animate-in fade-in font-[family-name:var(--font-inter)]">
-                🎉 Amazing! You&apos;ve mastered the Bunker Valentin history! 🎊
-              </p>
+          <div className="text-center pt-2 h-20 flex flex-col items-center justify-center">
+            {showTimelineButton && (
+              <a
+                href="/timeline"
+                className="inline-flex items-center mt-4 px-6 py-3 bg-transparent border-2 border-white/90 text-white/90 font-bold rounded-full hover:bg-white/10 hover:border-white transition-all duration-300 ease-in-out font-[family-name:var(--font-inter)] animate-in fade-in slide-in-from-bottom-4 duration-500"
+              >
+                Explore the Timeline →
+              </a>
             )}
           </div>
         </div>
