@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 const timelineData = [
   {
@@ -192,12 +193,12 @@ export default function BunkerValentinTimeline() {
 
         {/* Navigation Button */}
         <div className="mt-16 text-center">
-          <a
+          <Link
             href="/"
             className="inline-flex items-center px-8 py-4 bg-transparent border-2 border-white/90 text-white/90 font-bold rounded-full hover:bg-white/10 hover:border-white transition-all duration-300 ease-in-out font-[family-name:var(--font-inter)]"
           >
             ← Back to Flashcards
-          </a>
+          </Link>
         </div>
       </div>
     </div>

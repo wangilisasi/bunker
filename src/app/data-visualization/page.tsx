@@ -1,4 +1,5 @@
 import BunkerValentinDashboard from "@/components/BunkerValentinDashboard";
+import Link from "next/link";
 
 export default function DataVisualizationPage() {
   return (
@@ -17,7 +18,7 @@ export default function DataVisualizationPage() {
               Data Dashboard
             </h1>
             <p className="text-xl text-white/80 font-[family-name:var(--font-inter)] max-w-3xl mx-auto">
-              Exploring the numbers behind Bunker Valentin's history through charts and key metrics.
+              Exploring the numbers behind Bunker Valentin&apos;s history through charts and key metrics.
             </p>
           </div>
 
@@ -28,12 +29,12 @@ export default function DataVisualizationPage() {
 
           {/* Navigation */}
           <div className="text-center mt-12">
-            <a
+            <Link
               href="/"
               className="inline-flex items-center px-8 py-4 bg-transparent border-2 border-white/90 text-white/90 font-bold rounded-full hover:bg-white/10 hover:border-white transition-all duration-300 ease-in-out font-[family-name:var(--font-inter)]"
             >
               ← Back to Flashcards
-            </a>
+            </Link>
           </div>
         </div>
       </main>
